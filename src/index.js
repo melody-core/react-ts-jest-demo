@@ -1,102 +1,48 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-// import App from './App';
-// import reportWebVitals from './reportWebVitals';
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
 
-// 类组件
+// let timer = new Date().toString();
+// setTimeout(()=>{
+//   timer = new Date().toString();
+// }, 1000)
+// const Tick = () => {
+//   return (
+//     <div>{timer}</div>
+//   )
+// }
 
-// react组件 - 原型机 - Comopnent
-class Child extends Component {
+class Tick extends Component {
   constructor(props){
     super(props);
-    console.log('constructor');
-    this.state = {
-      count: 0,
-      a: 1
+    this.state= {
+      timer: new Date().toString(),
+      count: 0
     }
-  }
-  componentWillMount(){
-    console.log('componentWillMount')
+    // this.timer = null; // 这个用来记录定时器
   }
 
-  componentDidMount(){
-    console.log('componentDidMount')
-  }
-
-  componentWillReceiveProps(){
-    console.log('componentWillReceiveProps')
-  }
-
-  shouldComponentUpdate(){
-    console.log('shouldComponentUpdate');
-    return true;
-  }
-
-  componentWillUpdate(){
-    console.log('componentWillUpdate')
-  }
-
-  componentDidUpdate(){
-    console.log('componentDidUpdate')
-  }
-
-  componentWillUnmount(){
-    console.log('componentWillUnmount')
-  }
-
-
-
-  handleBoxClick = () => {
+  handleClick = () => {
     this.setState({
-      count: this.state.count + 1
-    },()=>{
-      console.log(this.state.count)
+      timer: new Date().toString(),
+      count: this.state.count+1
+    }, ()=>{
+      console.log(this.state)
     })
-
-  }
-  // 渲染
-  render(){
-    console.log('render', this.state.count)
-    return (
-      <div>
-        {this.state.count}
-        <div onClick={this.handleBoxClick}> + </div>
-      </div>
-    )
-  }
-}
-
-
-class Parent extends Component{
-
-  state= {
-    update: true
-  }
-  componentDidMount(){
-    setTimeout(()=>{
-      this.setState({
-        update: false
-      })
-    }, 3000)
+    console.log(this.state.timer)
   }
 
   render(){
-    console.log('parent-render')
-    if(this.state.update){
-      return (
-        <Child />
-      )
-    }
-    return <div>123</div>
-
+    console.log('render')
+    const { timer } = this.state;
+    return  <div onClick={this.handleClick}>{timer}</div>
   }
 }
 
 
 ReactDOM.render(
-  <Parent id='demo'/>,
-  document.getElementById('root')
+  <Tick  />,
+  document.getElementById("root")
 );
 
 // reportWebVitals();

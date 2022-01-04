@@ -53,6 +53,7 @@ const Box = (props) => {
 特点：
 1. 就是函数啦，而且被标签化使用的时候,没有this；
 2. 每次reRender，其实就是重新执行一遍这个函数。
+3. 轻量。当函数式组件能满足我们的需求的时候，尽可能的使用函数式组件。
 
 注意点：
 1. 截止到16.8.0版本之前，函数式组件没有自身的状态(state)，也无法维护内部的值(每次reRender，代表这个函数被重新执行),因此我们通常会用它来写一些纯UI组件(只关注视图，数据从props中获取)。
@@ -86,6 +87,7 @@ class Box extends React.Component{
     + setState: 两种使用方式如下:
         + this.setState(assignState, callback); assignState是一个合并对象。注意，常规形势下，这是表现是异步的。所以第二个callback可以用来写入state更新后的操作。
         + thi.setState(setFn)
+        + 常规下，在生命周期和合成事件中它的表现是异步的。如果外面套了一层计时器和延时器，它的表现就变成同步的了。
 
 
 ### react中的事件
