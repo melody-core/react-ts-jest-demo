@@ -122,6 +122,127 @@ typeof Demo;
 <img src="./readme_static/react生命周期钩子16.0.0.png">
 
 
+## 受控与非受控
+### 受控
+> 受控:将数据绑定在视图中，视图的展示受控于数据。用户与视图交互时，回调里更新数据，从而驱动视图更新。
+比如 一个input框，value绑定为一个状态，交互回调里调用this.setState
+```jsx
+class Demo extends React.component{
+    state = {
+        value: ''
+    }
+    handleChange = (event) => {
+        this.setState({
+            value: event.target.value
+        })
+    }
+    handleClick = () => {
+        console.log(this.state.value);
+    }
+    render(){
+        const { value } = this.state;
+        return (
+            <div>
+                <input value={value} onChange={this.handleChange}/>
+                <button onClick={this.handleClick}>
+                    点我获取input的value
+                <button>
+            </div>
+        )
+    }
+}
+```
+
+### 非受控-ref
+> ref有三种使用方式，按从古至今：
++ ref-name   15版本-快要弃用了
+```jsx
+<input ref="inputRef">
+this.refs.inputRef 
+```
++ ref-callback  16版本
+```jsx
+<input ref={(target)=>{this.inputRef=target}}>
+this.inputRef
+```
++ React.createRef  16.7
+```jsx
+this.inputRef = React.createRef();
+<input ref={this.inputRef}>
+this.inputRef.current
+```
+
+视图不受数据控制。一般对应表单元素不受控的话，我们也可以使用ref来获取表单元素中的值。
+```jsx
+class Demo extends React.component{
+    inputRef = React.createRef();
+    handleClick = () => {
+        console.log(this.inputref.current?.value)
+    }
+    render(){
+        return (
+            <div>
+                <input ref={this.inputRef}/>
+                <button onClick={this.handleClick}>
+                    点我获取input的value
+                <button>
+            </div>
+        )
+    }
+}
+```
+
+### 非受控-实例属性记录值
+```jsx
+class Demo extends React.component{
+    inputValue = '';
+    handleChange = (event) => {
+        this.inputValue = event.target.value;
+    }
+    handleClick = () => {
+        console.log(this.inputref.current?.value)
+    }
+    render(){
+        return (
+            <div>
+                <input 
+                    defaultValue={this.inputValue} 
+                    onChange={this.handleChange}
+                />
+                <button onClick={this.handleClick}>
+                    点我获取input的value
+                <button>
+            </div>
+        )
+    }
+}
+```
+
+## react框架的性能优化之旅。
+> 性能优化是没有极限的。react在这条路上走了很久，做了很多尝试。
+
++ 减少不必要的state
++ 纯UI组件尽可能的使用函数式组件
++ shouldComponentUpdate
++ PureComponent
++ 待续
+
+### shouldComponentUpdate
+在这个钩子里，我们可以手动地对比更新前后的props和state，来决定是否进行reRender，从而减少不必要的reRender。
+也就是说，这个钩子可以做性能优化。
+
+### PureComponent
+事实上，多数情况下，shouldComponentUpdate没有使用的必要。react给我们提供了PureComponent这个原型机(父类)，它默认在shouldComponentUpdate中做了浅比较。
+如果浅比较不通过，才会reRennder，反之如果浅比较通过，就不会reRender。
+由于它的学习成本较高，使用者一时不慎可能会引发bug，因此它也很少被使用。
+
+
+
+
+
+
+
+
 
 
 
