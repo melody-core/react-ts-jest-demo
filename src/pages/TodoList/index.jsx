@@ -13,6 +13,14 @@ export default class TodoList extends React.Component {
   // 用来记录所有的任务
   allTaskList = [];
 
+  setStatePromise = (assign) => {
+      return new Promise(resolve => {
+          this.setState(assign, ()=>{
+            resolve();
+          })
+      })
+  }
+
   getCurrentShowList = () => {
     const { currentType } = this.state;
     if (currentType === 0) {
@@ -48,17 +56,13 @@ export default class TodoList extends React.Component {
     }
   };
   // 按钮点击回调
-  handleBtnClick = (index) => {
-    this.setState(
-      {
+  handleBtnClick = async (index) => {
+    await this.setStatePromise({
         currentType: index,
-      },
-      () => {
-        this.setState({
-          taskList: this.getCurrentShowList(),
+     })
+    this.setState({
+        taskList: this.getCurrentShowList(),
         });
-      }
-    );
   };
   //   更新任务状态
   changeStatus = (target) => {
@@ -70,6 +74,7 @@ export default class TodoList extends React.Component {
   };
   // 渲染所有按钮
   renderBtns = () => {
+    console.log('render')
     const { currentType } = this.state;
     return BTN_LIST.map((item, index) => (
       <div
