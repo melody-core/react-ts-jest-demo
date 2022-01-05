@@ -39,6 +39,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 10px;
+    cursor: pointer;
 }
 .tip{
     color: tomato;
@@ -77,4 +79,12 @@
     align-items: center;
     margin-right: 18px;
     margin-left: 10px;
+    color: greenyellow;
+}
+.red-border{
+    border: 1px solid tomato;
+}
+.finish{
+    text-decoration: line-through;
+    color: grey;
 }
