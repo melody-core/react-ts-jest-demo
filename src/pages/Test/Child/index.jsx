@@ -1,25 +1,40 @@
 import React from "react";
-import eventStore from "../../../utils/eventStore";
+import PropTypes from "prop-types";
+// import eventStore from "../../../utils/eventStore";
+import testContext from "./../../../utils/context";
+
+const { Consumer } = testContext;
+
+console.log("PropTypes.number", PropTypes.number);
 
 
-
-class Child extends React.Component{
-    state = {
-        count: null
-    }
-    fn1 = (data) => {
-       this.setState({
-           count: data
-       })
-    }
-    componentDidMount(){
-        eventStore.on('sendCount', this.fn1)
-    }
-    render(){
-        const {count} = this.state;
+const connect = (Target) => {
+    return function NewComponent(){
         return (
-            <div>我是Child，我要显示来自最外层组件Test的数据count: {count}</div>
+            <Consumer>
+            {(value) => {
+              console.log("value", value);
+              return (
+                <Target {...value}/>
+              );
+            }}
+          </Consumer>
         )
     }
 }
-export default Child;
+
+class Child extends React.Component {
+  state = {
+    count: null,
+  };
+  componentDidMount() {}
+  render() {
+    console.log('child', this);
+    return (
+        <div>
+              {/* 我是Child，我要显示来自最外层组件Test的数据count: {this.props} */}
+        </div>
+    );
+  }
+}
+export default connect(Child);
