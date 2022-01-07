@@ -1,17 +1,14 @@
 import React from "react";
-import connect from './../../../utils/connect';
-
-// @connect(state=>state)
+import { connect } from 'react-redux'
 class Child extends React.Component {
-  componentDidMount() {}
   handleClick = () => {
-    const { count, dispatch } = this.props;
+    const {dispatch, count} = this.props;
     dispatch({
-      type: "updateCount",
+      type: 'updateCount',
       payload: {
-        count: count+1
+        count: count +1
       }
-    });
+    })
   };
   render() {
     console.log("child", this);
@@ -23,6 +20,11 @@ class Child extends React.Component {
     );
   }
 }
-export default connect((state)=>({
-  count: state.count
-}))(Child);
+
+const mapStateToProps = ( { count }  ) =>{
+  return {
+    count, 
+  }
+}
+
+export default connect(mapStateToProps)(Child)
