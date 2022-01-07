@@ -1,15 +1,17 @@
 import React from "react";
 import connect from './../../../utils/connect';
 
-
+// @connect(state=>state)
 class Child extends React.Component {
   componentDidMount() {}
   handleClick = () => {
-    const { count, updateStore } = this.props;
-    updateStore({
-      count: count + 1,
+    const { count, dispatch } = this.props;
+    dispatch({
+      type: "updateCount",
+      payload: {
+        count: count+1
+      }
     });
-    console.log(this.props);
   };
   render() {
     console.log("child", this);

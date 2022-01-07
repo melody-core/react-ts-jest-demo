@@ -16,14 +16,17 @@ const connect = (filterfn) => (Target) => {
         <Consumer>
           {(store) => {
             console.log("value", store);
-            const { state, setStore  } = store;
+            const { state, dispatch  } = store;
             // Set_Store
-            const updateStore = (assignState) => {
-              setStore(assignState, ()=>this.forceUpdate());
+            const newDisPatch = (action) => {
+                dispatch({
+                    ...action,
+                    callback: ()=>this.forceUpdate()
+                });
             }
 
             const filterStore = filterfn(state);
-            return <Target {...filterStore} updateStore={updateStore} />;
+            return <Target {...filterStore} dispatch={newDisPatch} />;
           }}
         </Consumer>
       );
