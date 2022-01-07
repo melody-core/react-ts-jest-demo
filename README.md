@@ -253,6 +253,8 @@ class Demo extends React.component{
 + 纯UI组件尽可能的使用函数式组件
 + shouldComponentUpdate
 + PureComponent
++ render Props
++ hooks
 + 待续
 
 ### shouldComponentUpdate
@@ -265,6 +267,10 @@ class Demo extends React.component{
 由于它的学习成本较高，使用者一时不慎可能会引发bug，因此它也很少被使用。
 
 
+
+### 闭包
+
+闭包： 函数内部能够沿着作用域链访问到作用域外部的变量，这种特性叫做闭包。
 
 
 
