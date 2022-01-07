@@ -241,7 +241,9 @@ class Demo extends React.component{
     - 子A传父，父传子B
     - 状态提升
 + 远端通信
+    - FLUX 思想: 状态提升到最外层+状态分发；视图交互回调事件里要更新我们的store，并且更新我们的视图。
     - 状态提升+context
+    - LUX 思想在react的具体实现： redux + react-redux
 
 
 ## react框架的性能优化之旅。

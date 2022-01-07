@@ -23,7 +23,7 @@ const store = {
   },
   setStore : (assignState, callback) => {
     Object.assign(store.state, assignState);
-    callback(store.state);
+    callback && callback(store.state);
   }
 }
 
