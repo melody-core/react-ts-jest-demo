@@ -1,41 +1,51 @@
+import { useRef, useState, useEffect, useCallback, useMemo } from "react";
 
-import { useRef, useState, useEffect } from 'react'
+import "./index.css";
+
+const Swiper = (props) => {
+  const [currentShowImgIndex, setCurrent] = useState(0);
+  const { imgList = [] } = props;
 
 
-// const useRef = (function(){
-//     let obj = {
-//         current: undefined
-//     };
-//     return (init)=> {
-//         if(obj.current!==undefined){
-//             return obj
-//         }
-//         // 这下面只会执行一次
-//         obj.current = init;
-//         return obj;
-//     }
-// })()
+  // callback
+  // 点击左右按钮的回调
+  const updateShowIndex = (index) => {
+    index = (index >= imgList.length) ?  0 : index;
+    index = (index <= -1) ? imgList.length - 1 : index;
+    setCurrent(index);
+  }
 
-// //  (init)=> {
-// //     if(obj.current!==undefined){
-// //         return obj
-// //     }
-// //     // 这下面只会执行一次
-// //     obj.current = init;
-// //     return obj;
-// // }
 
-const Counter = () => {
-    let countRef = useRef(0); // {current: 0}   {current: 1}
-    const boxRef = useRef();
-    setTimeout(() => {
-        console.log('boxRef', boxRef);
-    }, 1000);
-    countRef.current = countRef.current +1; // {current: 1}   {current: 2}
-    return (
-        <div ref={boxRef}>{countRef.current}</div>
-    )
-}
-// useRef: 1. 保存函数式组件中的值， 不会因为render而重置；
-// 2. ref的能力。 标记dom获取dom实例，标记组件获取组件实例。 
-export default Counter;
+  // render-UI-imgs
+  const renderImgList = () => {
+    return imgList.map((url, index) => (
+      <img
+        className={index === currentShowImgIndex ? "show" : ""}
+        key={url}
+        src={url}
+        alt=""
+      />
+    ));
+  };
+  // render
+  const imgs = renderImgList();
+  return (
+    <div className="swiper-wrap">
+      <button
+        className="left"
+        onClick={() => updateShowIndex(currentShowImgIndex - 1)}
+      >
+        &lt;
+      </button>
+      <button
+        className="right"
+        onClick={() => updateShowIndex(currentShowImgIndex + 1)}
+      >
+        &gt;
+      </button>
+      {imgs}
+    </div>
+  );
+};
+
+export default Swiper;
