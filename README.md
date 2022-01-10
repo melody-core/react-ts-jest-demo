@@ -254,7 +254,7 @@ class Demo extends React.component{
 + shouldComponentUpdate
 + PureComponent
 + render Props
-+ hooks
++ hooks - useCallback/useMemo
 + 待续
 
 ### shouldComponentUpdate
@@ -266,7 +266,17 @@ class Demo extends React.component{
 如果浅比较不通过，才会reRennder，反之如果浅比较通过，就不会reRender。
 由于它的学习成本较高，使用者一时不慎可能会引发bug，因此它也很少被使用。
 
+### 属性类型检测
++ TS集成静态类型检测
++ prop-types可以集成运行时的类型检测
 
+### react错误边界
+```jsx
+ComponentDidCatch(error){
+    // do sth ...
+}
+```
+由于ComponentDidCatch是基于try catch实现的，因此它无法捕获异步错误。
 
 ### 闭包
 
