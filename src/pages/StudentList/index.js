@@ -1,60 +1,43 @@
-import React, { useState, useEffect, useRef } from "react";
-import { xGetStudent } from "./utils";
+import { useFilter, useTableDataSource } from "./effect";
+
 import styles from "./index.module.css";
 
 const StudentList = () => {
-  // list-state
-  const [studentList, setList] = useState([]); //  {id, name, age, address} []
-  // name-input-ref
-  const nameRef = useRef();
-  // address-input-ref
-  const addressRef = useRef();
+  // 筛选框相关的业务逻辑
+  const {
+    nameValue,
+    addressValue,
+    handleNameChange,
+    handleAddressChange,
+    handleSearch,
+  } = useFilter();
 
-  // 获取学生列表
-  const getStudentList = (filter)=>{
-    xGetStudent(filter).then((results) => {
-        console.log("result", results);
-        const dataSource = results.map((item) => {
-          const {
-            dob: { age },
-            id: { value },
-            name: { first, last },
-            location: { country, city },
-          } = item;
-          return {
-            age,
-            name: first + " " + last,
-            id: value,
-            address: country + " " + city,
-          };
-        });
-        setList(dataSource);
-      });
-  }
-  useEffect(() => {
-     getStudentList();
-  }, []);
+  // table表格数据源相关的业务逻辑
+  const { getStudentList, studentList } = useTableDataSource();
 
-  // 搜索的回调
-  const handleSearch = () => {
-    const { value: name } = nameRef.current || {};
-    const { value: address} = addressRef.current || {};
-    getStudentList({
-        name,
-        address
-    })
-    
-  }
+  // studentListUI
+  const studentListUI = studentList.map((item, index) => {
+    const { name, age, address } = item;
+    return (
+      <div className={styles["table-line"]} key={index}>
+        <div>{name}</div>
+        <div>{age}</div>
+        <div>{address}</div>
+        <div>删除 编辑</div>
+      </div>
+    );
+  });
+
   return (
     <div>
       <div className={styles["filter-wrap"]}>
         <div>
-          姓名: <input ref={nameRef}/>
+          姓名: <input value={nameValue} onChange={handleNameChange} />
         </div>
         <div>
-          住址: <input ref={addressRef}/>
+          住址: <input value={addressValue} onChange={handleAddressChange} />
         </div>
-        <button onClick={handleSearch}>搜索</button>
+        <button onClick={() => handleSearch(getStudentList)}>搜索</button>
       </div>
       <div className={styles["table-wrap"]}>
         <div className={styles["table"]}>
@@ -64,17 +47,7 @@ const StudentList = () => {
             <div>住址</div>
             <div>操作</div>
           </div>
-          {studentList.map((item, index) => {
-            const { name, age, address, id } = item;
-            return (
-              <div className={styles["table-line"]} key={index}>
-                <div>{name}</div>
-                <div>{age}</div>
-                <div>{address}</div>
-                <div>删除 编辑</div>
-              </div>
-            );
-          })}
+          {studentListUI}
         </div>
       </div>
     </div>
