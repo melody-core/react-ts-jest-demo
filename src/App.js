@@ -1,23 +1,13 @@
-import logo from './logo.svg';
+import { Link, useNavigate } from 'react-router-dom';
 import './App.css';
 
 function App() {
+  const go = useNavigate();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      app
+      <Link to='/todolist/873732?a=1#b=3'>点我跳转todolist</Link>
+      <div onClick={()=>{go('/test')}}>点我去test</div>
     </div>
   );
 }

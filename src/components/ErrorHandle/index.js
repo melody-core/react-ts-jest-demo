@@ -7,7 +7,7 @@ export default class ErrorHandle extends React.Component{
         hasError: false
     }
 
-    static getDerivedStateFromError(error){
+    static getDerivedStateFromError(){
         return {
             hasError: true
         }

@@ -1,27 +1,17 @@
-import React, { Component, Profiler, StrictMode } from "react";
-import ReactDOM from "react-dom";
-import Test from "./pages/Test";
-// import List from "./pages/List";
-import StudentList from './pages/StudentList';
-import "./index.css";
-import { Provider } from "react-redux";
-import store from "./store";
-import ErrorHandle from './components/ErrorHandle'
+// import React, { Component, Profiler, StrictMode } from "react";
+import React from 'react';
 
-// ReactDOM.render(
-//   <Provider store={store}>
-//     <Test />
-//   </Provider>,
-//   document.getElementById("root")
-// );
+import ReactDOM from "react-dom";
+import App from './App';
+import Test from './pages/Test';
+import TodoListFn from './pages/TodoListFn';
+import StudentList from './pages/StudentList';
+import Router from './router';
 
 
 
 ReactDOM.render(
-  <ErrorHandle > 
-    <StudentList  />
-  </ErrorHandle>
-   ,
+  <Router />,
   document.getElementById("root")
 );
 // reportWebVitals();
