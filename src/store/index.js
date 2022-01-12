@@ -5,7 +5,7 @@ import countReducer from './reducers/count'
 import colorReducer from './reducers/color'
 import studentReducer from './reducers/studentList'
 
-import { studentListSaga } from './reducers/studentList'
+import { studentListSaga } from './effects/student';
 import setListener  from './effects/count';
 
 // 返回一个中间件实例

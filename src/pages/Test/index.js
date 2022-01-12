@@ -1,40 +1,37 @@
-import { Component } from 'react';
+import { Component } from "react";
 
-import { connect } from 'react-redux';
-
-// import { useCountContrulor, useDidMount } from './effect';
+import { connect } from "react-redux";
 
 
-class Test extends Component{
-
-  handleClick = () =>{
+class Test extends Component {
+  handleClick = () => {
     const { dispatch } = this.props;
-    dispatch({type: 'ADD_COUNT'})
-  }
+    dispatch({ type: "ADD_COUNT" });
+  };
   handleGetCount = () => {
     const { dispatch } = this.props;
-    dispatch({type: 'GET_COUNT'})
-  }
+    dispatch({ type: "GET_COUNT" });
+  };
 
-  render(){
-    console.log('render', this.props)
+  render() {
+    console.log("render", this.props);
     const { count } = this.props;
-    console.log('count', count)
+    console.log("count", count);
 
     return (
       <>
         <div>{count}</div>
         <div onClick={this.handleClick}>+</div>
-        <button onClick={this.handleGetCount}>点击我从远端获取最新的count</button>
+        <button onClick={this.handleGetCount}>
+          点击我从远端获取最新的count
+        </button>
       </>
-      
-    )
+    );
   }
 }
 
-
-export default connect(state=>{
+export default connect((state) => {
   return {
-    count: state.count
-  }
-})(Test)
+    count: state.count,
+  };
+})(Test);

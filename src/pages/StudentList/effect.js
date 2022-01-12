@@ -1,6 +1,5 @@
 
 import { useState, useEffect } from "react";
-import { xGetStudent } from "./utils";
 
 // 副作用-筛选功能的业务逻辑
 export const useFilter = () => {
@@ -21,8 +20,6 @@ export const useFilter = () => {
   };
   // 搜索的回调
   const handleSearch = (getStudentList) => {
-    // const { value: name } = nameRef.current || {};
-    // const { value: address} = addressRef.current || {};
     getStudentList({
       name: nameValue,
       address: addressValue,
@@ -43,7 +40,8 @@ export const useTableDataSource = (dispatch) => {
   // 获取学生列表
   const getStudentList = (filter) => {
     dispatch({
-      type: 'getStudentList'
+      type: 'getStudentList',
+      filter
     })
   };
   // didMount的时候初始化一下数据。
@@ -52,5 +50,41 @@ export const useTableDataSource = (dispatch) => {
   }, []);
   return {
       getStudentList,
+  }
+}
+
+
+// 处理studentList页面的业务逻辑钩子
+export const useStudentList = (dispatch) => {
+  const handleInputChange = (e, key) => {
+    const { value } = e.target;
+    //  setName(value);
+    dispatch({
+      type: "update",
+      payload: {
+        [key]: value,
+      },
+    });
+  };
+  // 搜索的回调
+  const handleSearch = (nameValue, addressValue) => {
+    dispatch({
+      type: "getStudentList",
+      filter: {
+        name: nameValue,
+        address: addressValue,
+      },
+    });
+  };
+  // didMount的时候初始化一下数据。
+  useEffect(() => {
+    dispatch({
+      type: "getStudentList",
+    });
+  }, []);
+  return  {
+    handleSearch,
+    handleInputChange
+
   }
 }

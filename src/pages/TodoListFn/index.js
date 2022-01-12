@@ -1,4 +1,4 @@
-// import { useState, useRef } from "react";
+import { useState, useRef } from "react";
 
 import AddTask from "./components/AddTask";
 import  { useParams, useSearchParams } from 'react-router-dom'
@@ -11,6 +11,7 @@ import styles from "./index.module.css";
 const TodoListFn = () => {
   // const params = useParams();
   // const res = useLocation();
+  const [count, setCount] = useState(0);
   const res = useSearchParams();
   const search = {};
   res[0].forEach( (value, key) => {
@@ -24,7 +25,7 @@ const TodoListFn = () => {
     taskList,
     handleBtnChange,
     changeStatus,
-  } = useTableDataSource();
+  } = useTableDataSource(count);
 
 
   return (
@@ -41,6 +42,7 @@ const TodoListFn = () => {
           taskList={taskList}
           changeStatus={changeStatus}
         />
+        <div onClick={()=>{setCount(count+1)}}>点我 {count}</div>
       </div>
     </div>
   );

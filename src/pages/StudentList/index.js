@@ -1,22 +1,17 @@
-import { useFilter, useTableDataSource } from "./effect";
-import { connect } from 'react-redux';
+// import { useState, useEffect } from "react";
+import { useStudentList } from "./effect";
+import { connect } from "react-redux";
 
 import styles from "./index.module.css";
 
 const StudentList = (props) => {
-  console.log('props',  props)
-  const { student: { studentList = [] }, dispatch } = props;
-  // 筛选框相关的业务逻辑
+  console.log(props);
   const {
-    nameValue,
-    addressValue,
-    handleNameChange,
-    handleAddressChange,
-    handleSearch,
-  } = useFilter();
+    student: { studentList = [], nameValue, addressValue },
+    dispatch,
+  } = props;
 
-  // table表格数据源相关的业务逻辑
-  const { getStudentList } = useTableDataSource(dispatch);
+  const { handleSearch, handleInputChange } = useStudentList(dispatch);
 
   // studentListUI
   const studentListUI = studentList.map((item, index) => {
@@ -35,12 +30,20 @@ const StudentList = (props) => {
     <div>
       <div className={styles["filter-wrap"]}>
         <div>
-          姓名: <input value={nameValue} onChange={handleNameChange} />
+          姓名:{" "}
+          <input
+            value={nameValue}
+            onChange={(e) => handleInputChange(e, "nameValue")}
+          />
         </div>
         <div>
-          住址: <input value={addressValue} onChange={handleAddressChange} />
+          住址:{" "}
+          <input
+            value={addressValue}
+            onChange={(e) => handleInputChange(e, "addressValue")}
+          />
         </div>
-        <button onClick={() => handleSearch(getStudentList)}>搜索</button>
+        <button onClick={() => handleSearch(nameValue, addressValue) }>搜索</button>
       </div>
       <div className={styles["table-wrap"]}>
         <div className={styles["table"]}>
@@ -57,6 +60,7 @@ const StudentList = (props) => {
   );
 };
 
-
-const mapStateToProps = state => state;
+const mapStateToProps = (state) => state;
 export default connect(mapStateToProps)(StudentList);
+
+

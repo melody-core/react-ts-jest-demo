@@ -2,9 +2,12 @@ import { useRef, useState } from "react";
 
 
 // 控制table展示数据的自定义hook
-export const useTableDataSource = () => {
+export const useTableDataSource = (count) => {
   // 用来记录所有任务列表的Ref
-  const allTaskListRef = useRef([]); // { current: []}
+  let allTaskListRef = null;
+  if( count%2===0){
+    allTaskListRef = useRef([]); // { current: []}
+  }
   // 当前视图展示的任务列表
   const [taskList, setTaskList] = useState([]);
   // 当前展示的任务类型 - 0是所有 1是未完成 2是已完成
