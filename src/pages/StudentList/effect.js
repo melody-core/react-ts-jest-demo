@@ -39,38 +39,18 @@ export const useFilter = () => {
 
 
 // 副作用-控制table的数据源和业务逻辑
-export const useTableDataSource = () => {
-      // list-state
-  const [studentList, setList] = useState([]); //  {id, name, age, address} []
-
+export const useTableDataSource = (dispatch) => {
   // 获取学生列表
   const getStudentList = (filter) => {
-    xGetStudent(filter).then((results) => {
-      console.log("result", results);
-      const dataSource = results.map((item) => {
-        const {
-          dob: { age },
-          id: { value },
-          name: { first, last },
-          location: { country, city },
-        } = item;
-        return {
-          age,
-          name: first + " " + last,
-          id: value,
-          address: country + " " + city,
-        };
-      });
-      setList(dataSource);
-    });
+    dispatch({
+      type: 'getStudentList'
+    })
   };
   // didMount的时候初始化一下数据。
   useEffect(() => {
     getStudentList();
   }, []);
-
   return {
       getStudentList,
-      studentList
   }
 }

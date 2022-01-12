@@ -1,8 +1,11 @@
 import { useFilter, useTableDataSource } from "./effect";
+import { connect } from 'react-redux';
 
 import styles from "./index.module.css";
 
-const StudentList = () => {
+const StudentList = (props) => {
+  console.log('props',  props)
+  const { student: { studentList = [] }, dispatch } = props;
   // 筛选框相关的业务逻辑
   const {
     nameValue,
@@ -13,7 +16,7 @@ const StudentList = () => {
   } = useFilter();
 
   // table表格数据源相关的业务逻辑
-  const { getStudentList, studentList } = useTableDataSource();
+  const { getStudentList } = useTableDataSource(dispatch);
 
   // studentListUI
   const studentListUI = studentList.map((item, index) => {
@@ -54,4 +57,6 @@ const StudentList = () => {
   );
 };
 
-export default StudentList;
+
+const mapStateToProps = state => state;
+export default connect(mapStateToProps)(StudentList);
