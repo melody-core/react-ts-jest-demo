@@ -1,0 +1,16 @@
+.img-wrap{
+    display: flex;
+    flex-direction: column;
+    padding: 2px;
+    width: 100%;
+}
+
+.img-target{
+    width: 100%;
+}
+
+.title{
+    line-height: 24px;
+    font-size: 18px;
+    text-align: center;
+}

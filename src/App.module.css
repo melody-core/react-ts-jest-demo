@@ -1,0 +1,8 @@
+.navigator-wrap {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-top: 1px solid #ddd;
+  padding: 4px 0;
+}

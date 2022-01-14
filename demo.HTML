@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+      <div style="height: 200vh;background: chartreuse;"></div>
+      <div id="scrollerFooter">看到我的时候就动态加载。</div>
+    <script>
+      var intersectionObserver = new IntersectionObserver(function (entries) {
+        console.log('entries', entries);
+        if(entries[0].isIntersecting){
+            // ...动态加载其他的图片
+        }
+      });
+      // start observing
+      intersectionObserver.observe(document.querySelector("#scrollerFooter"));
+    </script>
+  </body>
+</html>
