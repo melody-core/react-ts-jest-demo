@@ -9,6 +9,8 @@ import TodoListFn from './pages/TodoListFn';
 import StudentList from './pages/StudentList';
 import Router from './router';
 import store from './store';
+import './utils/EchartsCore';
+
 
 
 
