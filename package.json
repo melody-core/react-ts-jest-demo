@@ -142,8 +142,15 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.16.7",
+    "@types/jest": "^27.4.0",
+    "@types/node": "^12.20.46",
+    "@types/react": "^17.0.39",
+    "@types/react-dom": "^17.0.11",
     "@types/react-router-dom": "^5.3.2",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
     "eslint": "^8.6.0",
-    "eslint-plugin-react": "^7.28.0"
+    "eslint-plugin-react": "^7.28.0",
+    "react-test-renderer": "^17.0.2",
+    "typescript": "^4.5.5"
   }
 }

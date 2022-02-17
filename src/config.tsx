@@ -1,15 +1,7 @@
-import React, { useState } from "react";
 
-// import ReactDOM from "react-dom";
 
-import { Provider } from "react-redux";
-import Router from "./router";
-import Navigator from "./components/Navigator";
-import store from "./store";
 
-import styles from "./App.module.css";
-
-const MENE_LIST = [
+export const MENE_LIST = [
   {
     title: "首页",
     name: "home",
@@ -44,38 +36,5 @@ const MENE_LIST = [
   },
 ];
 
-const useNavigator = () => {
-  const initCurrent = MENE_LIST.findIndex(item => item.path === location.pathname)
-  const [current, setCurrent] = useState(initCurrent);
-  const isShow = (initCurrent!==-1);
-  const handleNavigatorRouter = (item, index) => {
-    window.history.pushState(null, null, item.path);
-    setCurrent(index);
-  };
-  return {
-    current,
-    isShow,
-    handleNavigatorRouter,
-  };
-};
+export type NavigatorConfigItem = typeof MENE_LIST[0];
 
-function App() {
-  const { current, handleNavigatorRouter, isShow } = useNavigator();
-
-  return (
-    <Provider store={store}>
-      <Router key={current} />
-
-      <div className={styles["navigator-wrap"]}>
-        <Navigator
-          dataSource={MENE_LIST}
-          onSearch={handleNavigatorRouter}
-          current={current}
-          isShow={isShow}
-        />
-      </div>
-    </Provider>
-  );
-}
-
-export default App;

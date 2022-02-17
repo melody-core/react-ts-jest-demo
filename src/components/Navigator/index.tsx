@@ -1,6 +1,9 @@
-import React, { forwardRef, useImperativeHandle } from "react";
+import React, {forwardRef, useImperativeHandle } from "react";
 import PropTypes from "prop-types";
 import { useSearchContrulor } from "./effect";
+
+import type { FC } from 'react';
+import type { NavigatorProps } from './type';
 
 import styles from "./index.module.css";
 
@@ -14,12 +17,12 @@ import styles from "./index.module.css";
  *  - @current 当前被展示的那个index，如果不传的话，由state控制。
  * @returns
  */
-export const Navigator = ({
+export const Navigator: FC<NavigatorProps> = forwardRef(({
   dataSource = [],
-  onSearch,
+  onSearch = () => undefined,
   isShow = true,
   bgcolor,
-  current,
+  current = 0,
 }, ref) => {
   const { currentShowIndex, handleItemSearch } = useSearchContrulor(
     current,
@@ -27,7 +30,7 @@ export const Navigator = ({
   );
   
   // ref转发
-  ref = useImperativeHandle(ref, ()=>({
+  useImperativeHandle(ref, ()=>({
     current
   }))
   
@@ -37,7 +40,7 @@ export const Navigator = ({
   }
 
   // 列表渲染所有选项
-  const items = dataSource.map((item, index) => {
+  const items = (dataSource || []).map((item, index) => {
     const { icon, title, name, activeIcon } = item;
     return (
       <div
@@ -68,17 +71,28 @@ export const Navigator = ({
   return (
     <div
       className={styles["navigator-wrap"]}
-      style={bgcolor ? { backgroundColor: bgcolor } : null}
+      style={bgcolor ? { backgroundColor: bgcolor } : undefined}
     >
       {items}
     </div>
   );
-};
+});
 
-export default forwardRef(Navigator);
+Navigator.defaultProps={
+  dataSource: [],
+  onSearch: ()=>undefined,
+  isShow: true,
+  current: 0
+}
 
 Navigator.propTypes = {
   dataSource: PropTypes.array,
   onSearch: PropTypes.func,
-  isShow: PropTypes.bool,
+  isShow: PropTypes.bool ,
+  bgcolor: PropTypes.string,
+  current: PropTypes.number
 };
+
+export default Navigator;
+
+

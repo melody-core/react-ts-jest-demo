@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TestB组件内置回调功能正常 1`] = `
+<div
+  className="count-wrap"
+  onClick={[Function]}
+>
+  0
+</div>
+`;
+
+exports[`TestB组件内置回调功能正常 2`] = `
+<div
+  className="count-wrap"
+  onClick={[Function]}
+>
+  1
+</div>
+`;

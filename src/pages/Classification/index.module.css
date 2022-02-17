@@ -1,0 +1,43 @@
+
+
+.search-wrap{
+    width: 100%;
+    align-items: center;
+    background: green;
+}
+.page-wrap{
+    height: 100%;
+    flex: 1;
+    display: flex;
+}
+
+.tab-wrap{
+    min-width: 84px;
+    height: 100%;
+    background: #9aa0b1;
+}
+
+.content-wrap{
+    height: 100%;
+    flex: 1;
+    overflow: scroll;
+    background: pink;
+}
+
+.tab-item{
+    padding: 8px 20px;
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tab-content{
+    position: relative;
+    border: 1px solid #DDD;
+}
+.observer-item{
+    position: absolute;
+    left: 0;
+    bottom: 150px;
+}

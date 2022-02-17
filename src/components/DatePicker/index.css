@@ -1,0 +1,95 @@
+.input-wrap{
+    margin: 40px;
+    display: inline-flex;
+    border: 1px solid #bbb;
+    padding-left: 5px;
+    position: relative;
+  }
+  .input-wrap input{
+    padding: 0;
+    width: 200px;
+    height: 40px;
+    line-height: 40px;
+    border: none;
+    outline: none;
+  }
+  .date-icon{
+    width: 40px;
+    height: 40px;
+    background: yellow;
+  }
+  .picker-wrap {
+    position: absolute;
+    background: white;
+    border: 1px solid #ddd;
+    box-shadow: 2px 0 #aaa;
+    top: 40px;
+    left: -1px;
+  }
+  .picker-head{
+    display: flex;
+    align-items: center;
+    height: 50px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .head-left, .head-right{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    margin: 0 20px;
+  }
+  
+  .head-mid{
+    height: 100%;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .m-r-20{
+    margin-right: 20px;
+  }
+  
+  
+  .picker-body{
+    padding: 0 20px;
+  }
+  .flex-center-wrap{
+    display: flex;
+    align-items: center;
+  
+  }
+  
+  .picker-box{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .body-body{
+    min-height: 40px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .picker-footer{
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .flex-wrap-wrap{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .color-gray{
+    color: gray
+  }
+
+  .enter-btn{
+      margin:  0 20px;
+      padding: 0 20px;
+      border: 1px solid skyblue;
+  }

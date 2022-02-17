@@ -1,0 +1,11 @@
+.wrap{
+    margin: 40px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.itemWrap{
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+}

@@ -48,5 +48,5 @@ if (
   argv.push(hasSourceControl ? '--watch' : '--watchAll');
 }
 
-
 jest.run(argv);
+
