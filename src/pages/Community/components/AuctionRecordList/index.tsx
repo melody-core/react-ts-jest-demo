@@ -2,7 +2,7 @@
  * @Author: 六弦(melodyWxy)
  * @Date: 2022-02-18 11:17:02
  * @LastEditors: 六弦(melodyWxy)
- * @LastEditTime: 2022-02-18 12:15:32
+ * @LastEditTime: 2022-02-18 13:16:57
  * @FilePath: /react-study/src/pages/Community/components/AuctionRecordList/index.tsx
  * @Description: update here
  */
@@ -12,7 +12,7 @@
 import React, { FC } from 'react';
 
 
-import { AuctionRecordListProps, DataSourceItem } from './type';
+import { AuctionRecordListProps } from './type';
 
 import { STATUS_IMG_LIST, useCurrentShowList }  from './effect';
 
@@ -26,7 +26,6 @@ import styles from './index.module.css';
  * @returns 
  */
 export const AuctionRecordList: FC<AuctionRecordListProps> = ({ dataSource = []})=> {
-
 
     const { currentShowList, handleMoreClick } = useCurrentShowList(dataSource);
 
