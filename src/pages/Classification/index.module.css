@@ -39,5 +39,8 @@
 .observer-item{
     position: absolute;
     left: 0;
-    bottom: 150px;
+    top: 200px;
+}
+.p-r{
+    position: relative;
 }
